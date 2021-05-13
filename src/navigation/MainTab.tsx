@@ -39,15 +39,15 @@ const MainTab = () => {
         }}
       />
       <Tab.Screen 
-        name="Setting" 
-        component={Setting}
+        name="Like" 
+        component={Like}
         options={{
             tabBarIcon: ({color}) => <Ionicons name="heart-circle-outline" size={24} color={color}/>,
           }}
      />
       <Tab.Screen 
-        name="Like" 
-        component={Like}
+        name="Setting" 
+        component={Setting}
         options={{
             tabBarIcon: ({color}) => <Ionicons name="settings-outline" size={24} color={color}/>,
           }}

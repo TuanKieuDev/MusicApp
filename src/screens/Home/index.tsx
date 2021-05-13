@@ -10,8 +10,8 @@ const Home = () => {
         <Layout style={{flex:1}}>
             <Header title=""/>
             <ScrollView>
-                <RowList title={"Recommended for you"} />
-                <RowList title={"My Playlist"} />
+            <RowList title={"Recommended for you"} />
+            <RowList title={"My Playlist"} />
             </ScrollView>
         </Layout>
     )

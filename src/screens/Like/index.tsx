@@ -1,15 +1,22 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
+import Header from '../../components/Header'
 import Layout from '../../components/Layout'
+import GridList from './gridList'
 
 const Like = () => {
     return (
         <Layout style={{flex:1}}>
-            <Text></Text>
+            <Header title="" />
+            <ScrollView>
+                <GridList title="Liked Songs"/>
+            </ScrollView>
         </Layout>
     )
 }
 
 export default Like
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    
+})
