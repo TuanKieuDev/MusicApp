@@ -4,9 +4,24 @@ import { ITheme, ThemeContext, themes, TMode } from "./src/config/Theme";
 import { NavigationContainer } from '@react-navigation/native';
 import RootStack from './src/navigation/RootStack';
  import {useFonts} from "expo-font" 
+ import './src/trans/i18n';
+import { ILocalization, LocalizationContext, TLocale } from './src/config/Localize';
+import { TScope } from './src/trans/vi';
+import { TranslateOptions } from 'i18n-js';
+import I18n from 'i18n-js';
+
 
 export default function App() {
   const [mode, setMode] = useState<TMode>("dark");
+  const [locale, setLocale] = useState<TLocale>("vi")
+  const localizationContext: ILocalization = useMemo(()=>({
+    t: (scope: TScope, options?: TranslateOptions)=>
+      I18n.t(scope, { locale, ...options }),
+    locale,
+    setLocale,
+  }),
+  [locale]
+);
    const [loaded] = useFonts({
       Regular: require("./src/asset/fonts/SF-Pro-Text-Regular.otf"),
       Bold: require("./src/asset/fonts/SF-Pro-Text-Bold.otf"),
@@ -28,6 +43,7 @@ export default function App() {
       value={{
         toggleTheme,
         theme,
+        mode,
       }}
     >
       <NavigationContainer>

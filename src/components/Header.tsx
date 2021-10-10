@@ -5,23 +5,39 @@ import Layout from './Layout'
 import {Ionicons} from "@expo/vector-icons"
 import Constants from 'expo-constants'
 import { useTheme } from '../config/Theme'
+import Icon from './Icon'
 
 interface Props {
     title:string;
+    btnLeft?: {
+        icon: string;
+        onPress: () => void;
+    };
+    btnRight?:{
+        icon: string;
+        onPress: () => void;
+    }
 }
-const Header = ({title}:Props) => {
-    const {theme} = useTheme();
+const Header = ({title,btnLeft,btnRight}:Props) => {
     return (
         <Layout style={styles.container}>
-            <TouchableOpacity style ={styles.btn}>
-                <Ionicons name="menu" size={24} color={theme.icon_color}/>
-            </TouchableOpacity>
+            {
+                !!btnLeft ? (<TouchableOpacity style ={styles.btn} onPress={btnLeft.onPress}>
+                <Icon name={btnLeft.icon}/>
+            </TouchableOpacity>):(
+            <View style ={styles.btn}/>
+            )
+            }
+            
             <View style={styles.body}>
-                <Text>{title}</Text>
+                <Text size='h2' font="Medium">{title}</Text>
             </View>
-            <TouchableOpacity style={styles.btn}>
-                <Ionicons name="search" size={24} color={theme.icon_color}/>
-            </TouchableOpacity>
+            {
+                !!btnRight ? (<TouchableOpacity style={styles.btn} onPress={btnRight.onPress}>
+                <Icon name={btnRight.icon}/>
+            </TouchableOpacity>):(<View style={styles.btn}/>)
+            }
+            
         </Layout>
     )
 }
@@ -42,6 +58,8 @@ const styles = StyleSheet.create({
     },
     body: {
         flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
     }
 
 })
